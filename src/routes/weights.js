@@ -1,4 +1,8 @@
 export const weights = {
+		two_vowels : {
+			"a" : 100,
+			"ee" : 2
+		},
 		word_beginnings_eng : {
 			"b":26,
 			"bl":44,
@@ -184,7 +188,10 @@ export const weights = {
 			"uo": 42,
 			"ua": 42,
 			"ui": 42,
-			"y": 63
+			"y": 63,
+			"igh": 18,
+			"aigh": 10,
+			"eigh": 8
 		},
 		word_vowels_ending_eng : {
 			"a": 63,

@@ -173,7 +173,7 @@ export const letters = {
 		"i","io","ie",
 		"o","oo","oi","ou",
 		"u","uo","ua","ui",
-		"y"
+		"y","igh","eigh","aigh"
 	],
 	word_vowels_ending_eng: [
 		"a","aw","ao","ay",
@@ -225,8 +225,10 @@ export const letters = {
 		"r","s",
 		"t","tr",
 		"v","w"
+	],
+	two_vowels : [
+		"a","ee"
 	]
-
 }
 
 export const patterns = {
@@ -521,8 +523,14 @@ createGenerator("Word Generator", "Weighted Test 2", [
 	makeGetWeightedRandom(letters.word_vowels_eng, weights.word_vowels_eng),
 	makeGetWeightedRandom(letters.word_middle_eng, weights.word_middle_eng),
 	makeGetWeightedRandom(letters.word_vowels_ending_eng, weights.word_vowels_ending_eng),
-
 ]);
+
+// TEST a test to make sure that the generator responds to weights.
+
+// createGenerator("Word Generator", "Weights - Unit Test", [
+// 	makeGetWeightedRandom(letters.two_vowels, weights.two_vowels),
+
+// ]);
 
 export const patterns_AI = {
 	constant : [always("A")],
