@@ -17,6 +17,11 @@ $: generated_list = [];
 $: amount = 30;
 
 function bulkCreate() {
+	if (amount > 3000) {
+		message = "Amount too large!"
+		setTimeout(() => {message = ""}, 2000)
+		amount = 3000
+	}
 	generated_list = [];
 	for (var i = 0; i < amount; i++) {
 		generated_list.push(makeGetPattern(patterns[current_generator])())
@@ -25,11 +30,35 @@ function bulkCreate() {
 	generated_list = generated_list;
 }
 
+$: keysDown = {}
+
+function handleKeydown () {
+	if (("ShiftLeft" in keysDown) || ("ShiftRight" in keysDown)) {
+		if (event.code == "ArrowUp") {
+			event.preventDefault();
+			amount += 10;
+		}
+		if (event.code == "ArrowDown") {
+			event.preventDefault();
+			amount -= 10;
+		}
+	}
+	keysDown[event.code] = true;
+	keysDown = keysDown;
+}
+
+function handleKeyup () {
+	delete keysDown[event.code];
+	keysDown = keysDown;
+}
+
 </script>
 
-<div>
-	<div>{message}</div>
-	<h1></h1>
+<div class="">
+	{#if message}
+		<div class="bg-red-500 p-3 mb-8">{message}</div>
+	{/if}
+	<h1 class="text-4xl pb-12 text-white">Password Generator</h1>
 	<form class="flex flex-col gap-3 items-start">
 		<div class="flex gap-3 items-end">
 			<div class=" flex flex-col">
@@ -41,9 +70,9 @@ function bulkCreate() {
 				rounded px-3
 				after:bg-blue-500
 				after:content-['•']
-				bg-gray-500 text-gray-200
+				bg-gray-700 text-gray-200
 				py-4
-				border border-2 border-gray-700
+				border border-1 border-black border-gray-700
 				">
 					{#each Object.keys(generators) as gen}
 						<optgroup label={gen}>
@@ -61,6 +90,7 @@ function bulkCreate() {
 				bg-gradient-to-r from-indigo-500 to-blue-500
 				hover:bg-gradient-to-l
 				duration-300
+				border border-1 border-transparent
 				rounded" 
 				type="submit" 
 				on:click={handleGenerate}
@@ -70,15 +100,15 @@ function bulkCreate() {
 					RESULT
 				</div>
 
-				<div class="font-mono border border-2 
-						border-gray-700
+				<div class="font-mono border border-1
+						border-black
+						bg-gray-700
 						focus:outline-none
 						focus:shadow-outline
 						rounded  text-gray-500 leading-tight 
 						font-mono shadow appearance-none 
 						mb-0
 						px-3
-						bg-gray-500
 						rounded grid">
 					<input 
 						class=" 
@@ -101,21 +131,25 @@ function bulkCreate() {
 				<div class="tracking-[.25em] text-gray-400 text-sm">
 					AMOUNT
 				</div>
-				<div class="font-mono border border-2 
-					border-gray-700
+				<div class="font-mono border border-1
+					border-black
+					bg-gray-700
 					focus:outline-none
 					focus:shadow-outline
-					rounded  text-gray-500 leading-tight 
+					rounded leading-tight 
 					font-mono shadow appearance-none 
 					mb-0
 					px-3 py-2
-					bg-gray-500
 					rounded grid">
 					<input type="number" name="" class="appearance-none outline-none focus:outline-none
 					bg-transparent
 					text-white
 					h-8
-					focus:shadow-outline" bind:value={amount}>
+					w-16
+					focus:shadow-outline" 
+					on:keydown={handleKeydown}
+					on:keyup={handleKeyup}
+					bind:value={amount}>
 				</div>
 			</div>
 			<button 
@@ -123,17 +157,24 @@ function bulkCreate() {
 				bg-gradient-to-r from-indigo-500 to-blue-500
 				hover:bg-gradient-to-l
 				py-3
+				border border-1 border-transparent
 				hover:bg-green-700 text-white px-4 rounded w-64" 
 				type="submit" 
 				on:click={bulkCreate}
+				
 				>Generate Bulk ({amount})</button>
 		</div>
 	</form>
-	<div class="grid p-3 bg-gray-300 rounded mt-6 grid-cols-4 py-4 font-mono gap-10">
+	<div class=" mt-6">
 
-		{#each generated_list as word} 
-			<div class="overflow-wrap break-words">{word}</div>
-		{/each}
+		<div class="tracking-[.25em] text-gray-400 text-sm">
+				BATCH RESULTS
+			</div>
+		<div class="grid p-3 bg-gray-300 rounded grid-cols-4 py-4 font-mono gap-10">
+			{#each generated_list as word} 
+				<div class="overflow-wrap break-words">{word}</div>
+			{/each}
+		</div>
 	</div>
 </div>
 
