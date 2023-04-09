@@ -54,7 +54,7 @@ function handleKeyup () {
 
 </script>
 
-<div class="">
+<div class="block">
 	{#if message}
 		<div class="bg-red-500 p-3 mb-8">{message}</div>
 	{/if}
@@ -165,22 +165,17 @@ function handleKeyup () {
 				>Generate Bulk ({amount})</button>
 		</div>
 	</form>
-<<<<<<< Updated upstream
-	<div class="grid p-3 bg-gray-300 rounded mt-6 lg:grid-cols-4 py-4 font-mono gap-10">
-=======
 	<div class=" mt-6">
->>>>>>> Stashed changes
-
-		<div class="tracking-[.25em] text-gray-400 text-sm">
-				BATCH RESULTS
+		<div class="grid p-3 bg-gray-300 rounded mt-6 lg:grid-cols-3 py-4 font-mono gap-10">
+			<div class="tracking-[.25em] text-gray-400 text-sm">
+					BATCH RESULTS
 			</div>
-		<div class="grid p-3 bg-gray-300 rounded grid-cols-4 py-4 font-mono gap-10">
-			{#each generated_list as word} 
-				<div class="overflow-wrap break-words">{word}</div>
-			{/each}
+			<div class="grid p-3 bg-gray-300 rounded grid-cols-4 py-4 font-mono gap-10">
+				{#each generated_list as word} 
+					<div class="overflow-wrap break-words">{word}</div>
+				{/each}
+			</div>
 		</div>
 	</div>
 </div>
-
-
 
