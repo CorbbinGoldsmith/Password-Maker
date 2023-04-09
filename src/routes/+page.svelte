@@ -54,7 +54,7 @@ function handleKeyup () {
 
 </script>
 
-<div class="">
+<div class="block">
 	{#if message}
 		<div class="bg-red-500 p-3 mb-8">{message}</div>
 	{/if}
