@@ -95,7 +95,7 @@ function handleKeyup () {
 				type="submit" 
 				on:click={handleGenerate}
 				>Generate</button>
-			<div class=" flex flex-col">
+			<div class=" lg:flex flex-col">
 				<div class="tracking-[.25em] text-gray-400 text-sm">
 					RESULT
 				</div>
@@ -166,8 +166,8 @@ function handleKeyup () {
 		</div>
 	</form>
 	<div class=" mt-6">
-
-		<div class="tracking-[.25em] text-gray-400 text-sm">
+	<	<div class="grid p-3 bg-gray-300 rounded mt-6 lg:grid-cols-3 py-4 font-mono gap-10">
+	<div class="tracking-[.25em] text-gray-400 text-sm">
 				BATCH RESULTS
 			</div>
 		<div class="grid p-3 bg-gray-300 rounded grid-cols-4 py-4 font-mono gap-10">
