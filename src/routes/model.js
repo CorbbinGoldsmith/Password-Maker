@@ -350,16 +350,6 @@ createGenerator("Secure Passwords","Secure Combination", [
 	makeGetRandom(letters.symbols),
 ]);
 
-createGenerator("Secure Passwords","Secure Combination", [
-	makeGetPattern(patterns._fourletter),
-	always("_"),
-	makeGetPattern(patterns._three_syllables),
-	always("_"),
-	makeGetRandom(letters.alphaNumeric_up),
-	always("_"),
-	makeGetRandom(letters.symbols),
-]);
-
 createGenerator("Tokens","Maximum Security", [
 	makeGetPattern(patterns._threeletter),
 	makeGetRandom(letters.symbols),
@@ -442,20 +432,6 @@ createGenerator("Secure Passwords","Super Secure Password", [
 	makeGetPattern(patterns._three_syllables),
 	makeGetRandom(letters.symbols),
 	makeGetPattern(patterns._threenumber)
-]);
-
-createGenerator("Word Generator","English word - two syllables", [
-	makeGetRandom(letters.word_beginnings_eng),
-	makeGetPattern(patterns._threeletter),
-	makeGetPattern(patterns._threeletter)
-]);
-
-createGenerator("Word Generator","English looking thing", [
-	makeGetRandom(letters.word_beginnings_eng),
-	makeGetRandom(letters.vowels),
-	makeGetRandom(letters.consonants),
-	makeGetRandom(letters.vowels),
-	makeGetRandom(letters.word_endings_eng),
 ]);
 
 createGenerator("Word Generator","Realistic Word", [
